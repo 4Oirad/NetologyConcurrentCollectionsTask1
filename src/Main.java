@@ -1,5 +1,7 @@
 public class Main {
 
+    private static final int WAIT_CALLS = 2000;
+
     public static void main(String[] args) throws InterruptedException {
 
         ATS ats = new ATS();
@@ -52,11 +54,18 @@ public class Main {
                 }, "оператор 5");
 
         threadATS.start();
-        Thread.sleep(2000);
+        Thread.sleep(WAIT_CALLS);
         threadOperator1.start();
         threadOperator2.start();
         threadOperator3.start();
         threadOperator4.start();
         threadOperator5.start();
+
+        threadATS.join();
+        threadOperator1.join();
+        threadOperator2.join();
+        threadOperator3.join();
+        threadOperator4.join();
+        threadOperator5.join();
     }
 }
