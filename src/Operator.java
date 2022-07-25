@@ -4,9 +4,10 @@ public class Operator {
 
     public void keepCall(ATS ats) throws InterruptedException {
         while (!ats.getArrayBlockingQueue().isEmpty()) {
-            System.out.println(Thread.currentThread().getName() + " обрабатывает звонок от клиента " + ats.getArrayBlockingQueue().poll());
-            Thread.sleep(CALL_PROCESSING);
+            if (ats.getArrayBlockingQueue().poll() != null) {
+                System.out.println(Thread.currentThread().getName() + " обрабатывает звонок от клиента " + ats.getArrayBlockingQueue().poll());
+                Thread.sleep(CALL_PROCESSING);
+            }
         }
-
     }
 }
